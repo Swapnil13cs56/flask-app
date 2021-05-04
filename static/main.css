@@ -45,3 +45,11 @@ h6 {
 a.list-group-item:hover {
     background-color:#364547 !important;
 }
+
+.form-control{
+    color:white;
+    border-radius: 0;
+    background:transparent;
+    border:none;
+    border-bottom: 1px solid #374045;
+}

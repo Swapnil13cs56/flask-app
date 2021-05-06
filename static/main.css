@@ -2,6 +2,7 @@ body {
     color: white;
     margin:20px;
     background-color: black;
+    font-family: 'Ubuntu Mono', monospace;
 }
 
 h1,
@@ -35,6 +36,7 @@ h6 {
 }
 
 .custom-card{
+
     color:white;
     background-color:black;
     margin-top:5%;
@@ -44,4 +46,21 @@ h6 {
 
 a.list-group-item:hover {
     background-color:#364547 !important;
+}
+
+.form-control{
+    
+    color:white;
+    border-radius: 0;
+    background:transparent;
+    border:none;
+    border-bottom: 1px solid #6f9eaf;
+}
+
+.custom-social:hover{
+    background-color: #30475e !important;
+}
+
+.form-control-lg{
+    font-size: 18px;
 }

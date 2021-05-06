@@ -2,8 +2,81 @@
 
 {% block content %}
 
-    <form action="" method="post">
-        {{ form.hidden_tag() }}
-    </form>
+<div class="col-md-7 offset-md-5" style="margin-top:10%">
+    <div class="card mb-3" style="background-color:black;">
+        <div class="row g-0">
+            <!-- <div class="col-md-4">
+                <img src="{{ url_for('static',filename='assets/icon.png') }}" alt="...">
+                
+            </div> -->
+            <!-- <div class="col-md-6"> -->
+                <div class="card-body" style="background-color:black;border-left: 1px solid #6f9eaf;padding: 0;">
+                    <h5 class="card-title" style="padding-left: 10px;background-color: #6f9eaf;height:45px;line-height:40px;">login</h5>
+                    <!-- <hr> -->
+            
+                    <form action="" method="post" >
+                        {{ form.hidden_tag() }}
+                        <fieldset class="form-group">
+                        
+
+                            <div class="form-group">
+                                <!-- {{ form.email.label(class="form-control-label") }} -->
+
+                                {% if form.email.errors %}
+                                {{ form.email(class="form-control form-control-lg is-invalid",placeholder="email") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.email.errors %}
+                                    <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                                {% else %}
+                                {{ form.email(class="form-control form-control-lg",placeholder="email") }}
+                                {% endif%}
+                            </div>
+
+                            <div class="form-group">
+                                <!-- {{ form.password.label(class="form-control-label") }} -->
+
+                                {% if form.password.errors %}
+                                {{ form.password(class="form-control form-control-lg is-invalid",placeholder="password") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.password.errors %}
+                                    <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                                {% else %}
+                                {{ form.password(class="form-control form-control-lg",placeholder="password") }}
+                                {% endif%}
+                            </div>
+
+                          <div class="form-check" style="margin-left: 10px;margin-top:10px;">
+                            
+                              {{ form.rememberMe(class="form-check-input") }}
+                              {{ form.rememberMe.label(class="form-check-label") }}
+                          </div>
+                        </fieldset>
+                
+                        <div class="form-group" style="padding-left: 10px;margin-top:10px">
+                            {{ form.submit(class="btn btn-outline-light") }}
+
+                            <span>
+                                <small class="text-muted ml-2" style="margin-left: 10px;">
+                                    <a href="#">forgot password?</a> 
+                                </small>
+                            </span>
+                        </div>
+                        
+                        
+                    </form>
+                    <p class="card-text" style="padding-left: 10px;margin-top:10px;"><small class="text-muted">need an account?<a class="ml-2"
+                                href="{{ url_for('register') }}">  sign up now</a></small></p>
+                </div>
+            <!-- </div> -->
+
+            
+
+        </div>
+    </div>
+</div>
 
 {% endblock content %}

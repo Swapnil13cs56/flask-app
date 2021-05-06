@@ -1,9 +1,7 @@
-from flask import Flask, render_template, url_for, flash, redirect
-from forms import RegistrationForm, LoginForm
-
-app = Flask(__name__)
-
-app.config['SECRET_KEY'] = 'c8324c68a2be34541966a70fcd4321a6'
+from flask import render_template, url_for, flash, redirect
+from swapnilblog import app
+from swapnilblog.forms import RegistrationForm, LoginForm
+from swapnilblog.models import User, Post
 
 posts = [
     {
@@ -55,7 +53,4 @@ def login():
             return redirect(url_for('home'))
         else:
             flash('login unsuccessful, please check email and password', 'danger')
-    return render_template('login.html', title='Login', form=form)    
-
-if __name__ == '__main__':
-    app.run(debug=True)
+    return render_template('login.html', title='Login', form=form)

@@ -43,7 +43,7 @@ jobs:
   - uses: azure/login@v1
     env: ${{ env.AZURE_SUBSCRIPTION }}
     with:
-     creds: ${{ secrets.AZURE_SERVICE_APP_ID, secrets.AZURE_SERVICE_PASSWORD, secrets.AZURE_SERVICE_TENANT }}
+     creds: ${{ secrets.AZURE_CREDENTIALS_GITHUB_SECRET }}
   - uses: azure/appservice-settings@v1
     with:
      app-name: ${{ env.AZURE_WEBAPP_NAME }}

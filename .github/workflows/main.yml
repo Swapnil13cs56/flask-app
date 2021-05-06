@@ -14,6 +14,7 @@ env:
   WORKING_DIRECTORY: '.'         # set this to the path to your path of working directory inside github repository, defaults to the repository root
   PYTHON_VERSION: '3.8' 
   STARTUP_COMMAND: 'gunicorn --bind=0.0.0.0 --timeout 600 swapnilblog:myapp'           # set this to the startup command required to start the gunicorn server. default it is empty
+  AZURE_SUBSCRIPTION: 'cloudpractice-payg'
 
 jobs:
  build-and-deploy:
@@ -40,8 +41,9 @@ jobs:
      
   # Azure login
   - uses: azure/login@v1
+    env: ${{ env.AZURE_SUBSCRIPTION }}
     with:
-     creds: ${{ secrets.AZURE_SERVICE_PASSWORD }}
+     creds: ${{ secrets.AZURE_SERVICE_APP_ID, secrets.AZURE_SERVICE_PASSWORD, secrets.AZURE_SERVICE_TENANT }}
   - uses: azure/appservice-settings@v1
     with:
      app-name: ${{ env.AZURE_WEBAPP_NAME }}

@@ -2,21 +2,21 @@
 
 {% block content %}
 
-<div class="col-md-10">
+<div class="col-md-7 offset-md-5" style="margin-top:10%">
     <div class="card mb-3" style="background-color:black;">
         <div class="row g-0">
             <!-- <div class="col-md-4">
                 <img src="{{ url_for('static',filename='assets/icon.png') }}" alt="...">
                 
             </div> -->
-            <div class="col-md-10">
-                <div class="card-body" style="background-color:black;border-left: 1px solid #374045;padding: 0;">
-                    <h3 class="card-title" style="padding-left: 10px;background-color: #374045;height:45px">Register yourself here</h3>
+            <!-- <div class="col-md-6"> -->
+                <div class="card-body" style="background-color:black;border-left: 1px solid #6f9eaf;padding: 0;">
+                    <h5 class="card-title" style="padding-left: 10px;background-color: #6f9eaf;height:45px;line-height:40px;">register</h5>
                     <!-- <hr> -->
             
-                    <form action="" method="post">
+                    <form action="" method="post" >
                         {{ form.hidden_tag() }}
-                        <fieldset class="form-group" style="">
+                        <fieldset class="form-group">
                             <div class="form-group" >
                                 <!-- {{ form.username.label(class="form-control-label") }} -->
 
@@ -87,7 +87,7 @@
                     <p class="card-text" style="padding-left: 10px;"><small class="text-muted">Already registered? <a class="ml-2"
                                 href="{{ url_for('login') }}">Login</a></small></p>
                 </div>
-            </div>
+            <!-- </div> -->
 
             
 

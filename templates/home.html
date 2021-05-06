@@ -2,13 +2,36 @@
 
 {% block content %}
 
-    {% for post in posts %}
+{% for post in posts %}
 
-    <h3>{{ post.title }}<br><span style="float:left">
-            <h6>By {{ post.author }} on {{ post.date_posted }}</h6>
-        </span></h3>
-    <br>
-    <p class="article-content">{{ post.content }}</p>
-    {% endfor %}
+<h3>{{ post.title }}<br><span style="float:left">
+        <h6>By {{ post.author }} on {{ post.date_posted }}</h6>
+    </span></h3>
+<br>
+<p class="article-content">{{ post.content }}</p>
+{% endfor %}
 
 {% endblock content %}
+
+{% block  social %}
+<div class="col-md-4" style="margin-top:5%;">
+
+    <div class="card custom-card" style="width: 15rem;float: right;">
+        <!-- <img src="{{ url_for('static',filename='assets/sklogo.png') }}" class="card-img-top" alt="..."> -->
+        <div class="card-body" style="border-bottom: 1px solid #52734d;">
+            <h5 class="card-title">quick links</h5>
+            <!-- <p class="card-text">access your quick links here</p> -->
+        </div>
+        <ul class="list-group list-group-flush">
+            <a href="" class="list-group-item"
+                style="background-color: black;color: white;border-bottom: 1px solid #334443;">An item</a>
+            <a href="" class="list-group-item"
+                style="background-color: black;color: white;border-bottom: 1px solid #334443;">An item</a>
+            <a href="" class="list-group-item"
+                style="background-color: black;color: white;border-bottom: 1px solid #334443;">An item</a>
+        </ul>
+
+    </div>
+  
+</div>
+{% endblock social %}

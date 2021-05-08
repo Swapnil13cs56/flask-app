@@ -16,11 +16,13 @@ jobs:
   steps:
   # checkout the repo 
   - uses: actions/checkout@master
+  
   # setup python
   - name: Setup Python
     uses: actions/setup-python@v1
     with:
      python-version: ${{ env.PYTHON_VERSION }}
+
   # install dependencies
   - name: python install
     working-directory: ${{ env.WORKING_DIRECTORY }}

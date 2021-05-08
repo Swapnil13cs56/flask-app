@@ -40,10 +40,17 @@
             <div class="col-md-2">
 
                 <div class="account" style="float: right;">
-                    <a href="{{ url_for('login') }}" class="btn btn-light custom-social"
-                        style="border-radius: 0;background-color:transparent;border:none;color:white;border-bottom:1px solid #6f9eaf;border-right: 1px solid #6f9eaf;">login</a>
-                    <a href="{{ url_for('register') }}" class="btn btn-light custom-social"
+                    {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('account') }}" class="btn btn-light custom-social"
+                            style="border-radius: 0;background-color:transparent;border:none;color:white;border-bottom:1px solid #6f9eaf;border-right: 1px solid #6f9eaf;">account</a>
+                    <a href="{{ url_for('logout') }}" class="btn btn-light custom-social"
+                            style="border-radius: 0;background-color:transparent;border:none;color:white;border-bottom:1px solid #6f9eaf;border-right: 1px solid #6f9eaf;">logout</a>
+                    {% else %}
+                        <a href="{{ url_for('login') }}" class="btn btn-light custom-social"
+                            style="border-radius: 0;background-color:transparent;border:none;color:white;border-bottom:1px solid #6f9eaf;border-right: 1px solid #6f9eaf;">login</a>
+                        <a href="{{ url_for('register') }}" class="btn btn-light custom-social"
                         style="border-radius: 0;background-color:transparent;border:none;color:white;border-bottom:1px solid #6f9eaf;border-left: 1px solid #6f9eaf;">register</a>
+                    {% endif %}
                 </div>
 
                 <!-- <h2 style="float: right;margin-left: 15px;"><i class="bi bi-instagram"></i></h2>

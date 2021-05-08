@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block content %}
+
+
+
+    
+        <div class="card mb-8" style="max-width: 540px;background-color:black;">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="{{ url_for('static',filename='assets/sk.png') }}"
+                style="border-radius:50%; border: 5px solid #6f9eaf;">
+              </div>
+              <div class="col-md-8" style="border-left: 1px solid white;">
+                <div class="card-body">
+                  <!-- <h5 class="card-title">account</h5> -->
+                  <p class="card-text">
+                      <h5><span><p class="card-text"><small class="text-muted">username</small></p></span>{{ current_user.username }}</h5>
+                      <h5><span><p class="card-text"><small class="text-muted">email</small></p></span>{{ current_user.email }}</h5></p>
+                  <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+{% endblock content %}

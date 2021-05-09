@@ -1,37 +1,43 @@
 {% extends "layout.html" %}
 
 {% block content %}
+<div class="row">
+  
+    <div class="col-md-8">
 
-{% for post in posts %}
 
-<h3>{{ post.title }}<br><span style="float:left">
-        <h6>By {{ post.author }} on {{ post.date_posted }}</h6>
-    </span></h3>
-<br>
-<p class="article-content">{{ post.content }}</p>
-{% endfor %}
+        {% for post in posts %}
 
-{% endblock content %}
+        <h3>{{ post.title }}<br><span style="float:left">
+                <h6>By {{ post.author }} on {{ post.date_posted }}</h6>
+            </span></h3>
+        <br>
+        <p class="article-content">{{ post.content }}</p>
+        {% endfor %}
 
-{% block  social %}
-<div class="col-md-4" style="margin-top:5%;">
-
-    <div class="card custom-card" style="width: 15rem;float: right;">
-        <!-- <img src="{{ url_for('static',filename='assets/sklogo.png') }}" class="card-img-top" alt="..."> -->
-        <div class="card-body" style="border-bottom: 1px solid #6f9eaf;background-color:#30475e">
-            <h5 class="card-title">quick links</h5>
-            <!-- <p class="card-text">access your quick links here</p> -->
-        </div>
-        <ul class="list-group list-group-flush">
-            <a href="" class="list-group-item"
-                style="background-color: black;color: white;border-bottom: 1px solid #6f9eaf;">Recent Posts</a>
-            <a href="" class="list-group-item"
-                style="background-color: black;color: white;border-bottom: 1px solid #6f9eaf;">Latest news</a>
-            <a href="" class="list-group-item"
-                style="background-color: black;color: white;border-bottom: 1px solid #6f9eaf;">An item</a>
-        </ul>
 
     </div>
-  
+    
+    <div class="col-md-4">
+
+        <div class="card custom-card" style="width: 15rem;float: right;">
+            <!-- <img src="{{ url_for('static',filename='assets/sklogo.png') }}" class="card-img-top" alt="..."> -->
+            <div class="card-body" style="border-bottom: 1px solid #6f9eaf;background-color:#30475e">
+                <h5 class="card-title">quick links</h5>
+                <!-- <p class="card-text">access your quick links here</p> -->
+            </div>
+            <ul class="list-group list-group-flush">
+                <a href="" class="list-group-item"
+                    style="background-color: black;color: white;border-bottom: 1px solid #6f9eaf;">Recent Posts</a>
+                <a href="" class="list-group-item"
+                    style="background-color: black;color: white;border-bottom: 1px solid #6f9eaf;">Latest news</a>
+                <a href="" class="list-group-item"
+                    style="background-color: black;color: white;border-bottom: 1px solid #6f9eaf;">An item</a>
+            </ul>
+
+        </div>
+
+    </div>
+
 </div>
-{% endblock social %}
+{% endblock content %}

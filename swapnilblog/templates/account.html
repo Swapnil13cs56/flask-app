@@ -2,25 +2,90 @@
 {% block content %}
 
 
+<!-- <div class="card mb-8" style="max-width: 100%;background-color:black;"> -->
+  <div class="row">
 
-    
-        <div class="card mb-8" style="max-width: 540px;background-color:black;">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <img src="{{ url_for('static',filename='assets/sk.png') }}"
-                style="border-radius:50%; border: 5px solid #6f9eaf;">
-              </div>
-              <div class="col-md-8" style="border-left: 1px solid white;">
-                <div class="card-body">
-                  <!-- <h5 class="card-title">account</h5> -->
-                  <p class="card-text">
-                      <h5><span><p class="card-text"><small class="text-muted">username</small></p></span>{{ current_user.username }}</h5>
-                      <h5><span><p class="card-text"><small class="text-muted">email</small></p></span>{{ current_user.email }}</h5></p>
-                  <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+    <div class="col-md-3">
+      <img src="{{ image_file }}" style="border-radius:50%; border: 5px solid #6f9eaf;display: block;margin-left: auto;margin-right: auto;">
+    </div>
+
+
+    <div class="col-md-4" >
+      <div class="card-body" style="border-left: 1px solid white;">
+        <!-- <h5 class="card-title">account</h5> -->
+        <p class="card-text">
+        <h5><span>
+            <p class="card-text"><small class="text-muted">username</small></p>
+          </span>{{ current_user.username }}</h5>
+        <h5><span>
+            <p class="card-text"><small class="text-muted">email</small></p>
+          </span>{{ current_user.email }}</h5>
+        </p>
+        <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+      </div>
+      <br>
+    </div>
+
+
+    <div class="col-md-5" style="float:right">
+      <div class="col-md-7 offset-md-5">
+        <div class="card mb-3" style="background-color:black;">
+          <div class="row g-0">
+            <div class="card-body" style="background-color:black;border-right: 1px solid #6f9eaf;padding: 0;">
+              <h5 class="card-title" style="padding-left: 10px;background-color: #6f9eaf;height:45px;line-height:40px;">
+                update</h5>
+              <!-- <hr> -->
+
+              <form action="" method="post">
+                {{ form.hidden_tag() }}
+                <fieldset class="form-group">
+                  <div class="form-group">
+                    <!-- {{ form.username.label(class="form-control-label") }} -->
+
+                    {% if form.username.errors %}
+                    {{ form.username(class="form-control form-control-lg is-invalid", placeholder="username") }}
+                    <div class="invalid-feedback">
+                      {% for error in form.username.errors %}
+                      <span>{{ error }}</span>
+                      {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.username(class="form-control form-control-lg", placeholder="username") }}
+                    {% endif%}
+                  </div>
+
+                  <div class="form-group">
+                    <!-- {{ form.email.label(class="form-control-label") }} -->
+
+                    {% if form.email.errors %}
+                    {{ form.email(class="form-control form-control-lg is-invalid",placeholder="email") }}
+                    <div class="invalid-feedback">
+                      {% for error in form.email.errors %}
+                      <span>{{ error }}</span>
+                      {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.email(class="form-control form-control-lg",placeholder="email") }}
+                    {% endif%}
+                  </div>
+                </fieldset>
+                <br>
+                <div class="form-group" style="padding-left: 10px;">
+                  {{ form.submit(class="btn btn-outline-light") }}
                 </div>
-              </div>
+                <br>
+              </form>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+<!-- </div> -->
+
+
 
 
 {% endblock content %}

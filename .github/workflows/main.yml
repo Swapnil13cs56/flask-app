@@ -2,7 +2,7 @@ name: Deploy Python package to Azure Web App as a Linux web app.
 on:
   push:
    branches:    
-      - 'test',
+      - 'test'
       - 'stage'
 
 variables:

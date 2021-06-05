@@ -17,7 +17,7 @@ def medium():
 
 @app.route("/blog")
 def blog():
-    posts = Post.query.all()
+    posts = Post.query.filter(Post.category == 'general')
     return render_template('blog.html', title='blog', posts=posts)
 
 @app.route("/devops")

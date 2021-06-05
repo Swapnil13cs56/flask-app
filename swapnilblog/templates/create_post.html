@@ -1,0 +1,84 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="col-md-12 align-self-center">
+
+    <div class="card-body">
+
+        <form action="" method="post">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+
+                <legend> {{ legend }}</legend>
+                <div class="form-group">
+
+
+
+                    {% if form.title.errors %}
+                    {{ form.title(class="form-control form-control-lg is-invalid",placeholder="title") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.title.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.title(class="form-control form-control-lg",placeholder="title") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+
+                    {% if form.content.errors %}
+                    {{ form.content(class="form-control form-control-lg is-invalid",placeholder="content") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.content.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.content(class="form-control form-control-lg",placeholder="content",rows="10") }}
+                    {% endif%}
+                </div>
+                <div class="form-group">
+
+
+                    {% if form.author.errors %}
+                    {{ form.author(class="form-control form-control-lg is-invalid",placeholder="author") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.author.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.author(class="form-control form-control-lg",placeholder="author") }}
+                    {% endif%}
+                </div>
+
+                <div class="form-group">
+
+
+                    {% if form.category.errors %}
+                    {{ form.category(class="form-control form-control-lg is-invalid",placeholder="category") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.category.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.category(class="form-control form-control-lg",placeholder="category") }}
+                    {% endif%}
+                </div>
+
+
+            </fieldset>
+
+            <div class="form-group" style="padding-left: 10px;margin-top:10px">
+                {{ form.submit(class="btn btn-outline-dark") }}
+
+            </div>
+
+
+        </form>
+    </div>
+</div>
+{% endblock content %}

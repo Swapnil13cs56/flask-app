@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<ul class="nav justify-content-center">
+    <li class="nav-item">
+        <a href="{{ url_for('devops') }}" class="nav-link active">devOps</a>
+    </li>
+    <li class="nav-item">
+        <a href="{{ url_for('azure') }}" class="nav-link">azure</a>
+    </li>
+    <li class="nav-item">
+        <a href="{{ url_for('software_testing')}}" class="nav-link">software testing</a>
+    </li>
+    <li class="nav-item">
+        <a href="{{ url_for('personal_growth') }}" class="nav-link">personal growth</a>
+    </li>
+</ul>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            {% for post in posts %}
+            <div class="card" style="margin:10px;border-radius: 10px;border:none;text-align: justify;">
+                <!-- <img src="..." class="card-img-top" alt="..."> -->
+                <div class="card-body">
+                        <h4 class="card-title"><a href="{{ url_for('post', post_id=post.id) }}">{{ post.title }}</a>
+                        </h4>
+                        <small class="text-muted">by {{ post.author }} on {{ post.date_posted.strftime('%Y-%m-%d')
+                            }}</small>
+<br><br>
+                    <p class="card-text">{{ post.content | safe }}</p>
+                </div>
+
+            </div>
+
+            {% endfor %}
+        </div>
+    </div>
+
+    <footer>
+        <div class="row">
+            <ul class="list-group list-group-flush" style="margin:0 auto;">
+                <p class="list-group-item">
+                    swapnilkumar.in |
+                    <a href="https://www.linkedin.com/in/swapnilkr/"><i
+                            class="fab fa-linkedin-in fa-1x"></i></a>&nbsp;&nbsp;<a
+                        href="https://swapnilkr.medium.com/"><img
+                            src="{{ url_for('static',filename='assets/medium.png') }}" width="21" height="24"
+                            style="vertical-align:-5px"></a>&nbsp;&nbsp;<a
+                        href="https://www.instagram.com/soup_lazy/"><i
+                            class="fab fa-instagram fa-1x"></i></a>&nbsp;&nbsp;<a
+                        href="https://twitter.com/explorerswapnil"><i class="fab fa-twitter fa-1x"></i></a>
+                </p>
+
+            </ul>
+
+
+        </div>
+    </footer>
+</div>
+{% endblock content %}

@@ -2,40 +2,17 @@
 
 {% block content %}
 <div class="row">
-  
-    <div class="col-md-8">
+    <div class="col-md-6 offset-md-3 align-self-center">
 
-
-        {% for post in posts %}
-
-        <h3>{{ post.title }}<br><span style="float:left">
-                <h6>By {{ post.author }} on {{ post.date_posted }}</h6>
-            </span></h3>
-        <br>
-        <p class="article-content">{{ post.content }}</p>
-        {% endfor %}
-
-
-    </div>
-    
-    <div class="col-md-4">
-
-        <div class="card custom-card" style="width: 15rem;float: right;">
-            <!-- <img src="{{ url_for('static',filename='assets/sklogo.png') }}" class="card-img-top" alt="..."> -->
-            <div class="card-body" style="border-bottom: 1px solid #6f9eaf;background-color:#30475e">
-                <h5 class="card-title">quick links</h5>
-                <!-- <p class="card-text">access your quick links here</p> -->
+        <div class="card text-center" style="border:none">
+            <div class="card-body">
+                <img src="{{ url_for('static',filename='assets/emoji.png') }}" alt="..." height="100px">
+                <br><br>
+              <h4 class="card-title">swapnil kumar</h4>
+              <p class="card-text">mts <a href="https://en.wikipedia.org/wiki/DevOps">devOps</a> engineer by profession at <a href="https://www.bluestacks.com/">bluestacks</a> thinks CI/CD pipeline is analogous to life, for a new change every day we prepare ourselves with challenges to deal with. blog writer on medium, generally related to journey and life. also write technical blogs related to <a href="https://en.wikipedia.org/wiki/DevOps">devOps</a>, <a href="https://azure.microsoft.com/en-in/">microsoft azure</a>, <a href="https://en.wikipedia.org/wiki/Software_testing">software testing</a> but not limited to those.<br>believes in hardwork, consistency and love. peace</p>
+              <p><a href="https://www.linkedin.com/in/swapnilkr/"><i class="fab fa-linkedin-in fa-2x"></i></a>&nbsp;&nbsp;<a href="https://swapnilkr.medium.com/"><img src="{{ url_for('static',filename='assets/medium.png') }}" width="28" height="32" style="vertical-align:-5px"></a>&nbsp;&nbsp;<a href="https://www.instagram.com/soup_lazy/"><i class="fab fa-instagram fa-2x"></i></a>&nbsp;&nbsp;<a href="https://twitter.com/explorerswapnil"><i class="fab fa-twitter fa-2x"></i></a></p>
             </div>
-            <ul class="list-group list-group-flush">
-                <a href="" class="list-group-item"
-                    style="background-color: black;color: white;border-bottom: 1px solid #6f9eaf;">Recent Posts</a>
-                <a href="" class="list-group-item"
-                    style="background-color: black;color: white;border-bottom: 1px solid #6f9eaf;">Latest news</a>
-                <a href="" class="list-group-item"
-                    style="background-color: black;color: white;border-bottom: 1px solid #6f9eaf;">An item</a>
-            </ul>
-
-        </div>
+          </div>
 
     </div>
 

@@ -1,7 +1,7 @@
 body {
-    color: white;
+    /* color: white; */
     margin:20px;
-    background-color: black;
+    /* background-color: black; */
     font-family: 'Ubuntu Mono', monospace;
 }
 
@@ -14,12 +14,9 @@ h6 {
     font-weight: 300;
 }
 
-.main-content {
-    background-color: black;
-}
 
 #title {
-    color: #f4eee8;
+    /* color: #f4eee8; */
     opacity: 0.75;
 }
 
@@ -29,7 +26,6 @@ h6 {
 
 .article-content{
     text-align: justify;
-    border-top:0.5px solid #5f5f5f;
     padding-top:20px;
     padding-bottom:20px;
 
@@ -37,24 +33,22 @@ h6 {
 
 .custom-card{
 
-    color:white;
-    background-color:black;
-    margin-top:5%;
-    border-right: 1px solid #6f9eaf;
+    /* color:white; */
+    /* background-color:black; */
+    /* margin-top:5%; */
+    border-top:none;
+    border-left: none;
+    border-bottom: none;
+    border-right: 1px solid #343f56;
     text-align: right;
-}
-
-a.list-group-item:hover {
-    background-color:#364547 !important;
-}
-
-.form-control{
-    
-    color:white;
     border-radius: 0;
-    background:transparent;
-    border:none;
-    border-bottom: 1px solid #6f9eaf;
+}
+a.list-group-item {
+    color: #343f56;
+}
+a.list-group-item:hover {
+    background-color:#ffd56b !important;
+    text-decoration: none;
 }
 
 .custom-social:hover{

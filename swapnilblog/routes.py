@@ -1,80 +1,94 @@
 from flask import render_template, url_for, flash, redirect, request
-from swapnilblog import app, db, bcrypt
-from swapnilblog.forms import RegistrationForm, LoginForm, UpdateAccountForm
-from swapnilblog.models import User, Post
-from flask_login import login_user, current_user, logout_user, login_required
-
-posts = [
-    {
-        'id': 'item-1',
-        'author': 'Swapnil',
-        'title': 'Post 1',
-        'content': 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-        'date_posted': 'April 27 2021'
-    },
-    {
-        'id': 'item-2',
-        'author': 'Swapnil',
-        'title': 'Post 2',
-        'content': 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-        'date_posted': 'April 27 2021'
-    }
-]
+from werkzeug.utils import html
+from swapnilblog import app, db
+from swapnilblog.forms import PostForm
+from swapnilblog.models import Post
+from sqlalchemy import func
 
 
 @app.route("/")
 @app.route("/home")
 def home():
-    return render_template('home.html', posts=posts)
+    return render_template('home.html')
 
+@app.route("/blog/medium")
+def medium():
+    return render_template('medium.html', title='medium')
+
+@app.route("/blog")
+def blog():
+    posts = Post.query.all()
+    return render_template('blog.html', title='blog', posts=posts)
+
+@app.route("/devops")
+def devops():
+    posts = Post.query.filter(Post.category == 'devops')
+    return render_template('devops.html', title='devops', posts=posts)
+
+@app.route("/azure")
+def azure():
+    posts = Post.query.filter(Post.category == 'azure')
+    return render_template('azure.html', title='azure', posts=posts)
+
+@app.route("/software-testing")
+def software_testing():
+    posts = Post.query.filter(Post.category == 'software testing')
+    return render_template('software-testing.html', title='software testing', posts=posts)
+
+@app.route("/personal-growth")
+def personal_growth():
+    posts = Post.query.filter(Post.category == 'personal growth')
+    return render_template('personal-growth.html', title='personal growth', posts=posts)
+
+@app.route("/gallery")
+def gallery():
+    return render_template('gallery.html', title='gallery')
 
 @app.route("/about")
 def about():
     return render_template('about.html', title='about')
 
+@app.route("/post/new", methods=['GET', 'POST'])
+def new_post():
+    form = PostForm()
+    if form.validate_on_submit():
+        post = Post(title=form.title.data, content=form.content.data, author="Swapnil", category=func.lower(form.category.data))
+        db.session.add(post)
+        db.session.commit()
+        flash('Your post has been created!', 'success')
+        return redirect(url_for('home'))
+    return render_template('create_post.html', title='new post', form=form, legend='new post')
+
+
+@app.route("/post/<int:post_id>")
+def post(post_id):
+    post = Post.query.get_or_404(post_id)
+    return render_template('post.html', title='post.title', post=post)
+
+@app.route("/post/<int:post_id>/update", methods=['GET', 'POST'])
+def update_post(post_id):
+    post = Post.query.get_or_404(post_id)
+    form = PostForm()
+    if form.validate_on_submit():
+        post.title = form.title.data
+        post.content = form.content.data
+        db.session.commit()
+        flash('post updated!', 'success')
+        return redirect(url_for('post', post_id=post.id))
+    elif request.method == 'GET':
+        form.title.data = post.title
+        form.content.data = post.content
+    return render_template('create_post.html', title='update post', form=form, legend='update post')
+
+@app.route("/post/<int:post_id>/delete", methods=['POST'])
+def delete_post(post_id):
+    post = Post.query.get_or_404(post_id)
+    db.session.delete(post)
+    db.session.commit()
+    flash('post deleted!', 'success')
+    return redirect(url_for('home'))
 
 @app.route("/custom")
 def custom():
     return render_template('custom.html', posts=posts, title='custom')
 
-@app.route("/register", methods=['GET', 'POST'])
-def register():
-    if current_user.is_authenticated:
-        return redirect(url_for('home'))
-    form = RegistrationForm()
-    if form.validate_on_submit():
-        hashed_pwd = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        user = User(username=form.username.data, email=form.email.data, password=hashed_pwd)
-        db.session.add(user)
-        db.session.commit()
-        flash('Your account has been created! You are now able to log in', 'success')
-        return redirect(url_for('login'))
-    return render_template('register.html', title='Register', form=form)
-
-@app.route("/login", methods=['GET', 'POST'])
-def login():
-    if current_user.is_authenticated:
-        return redirect(url_for('home'))
-    form = LoginForm()
-    if form.validate_on_submit():
-        user = User.query.filter_by(email=form.email.data).first()
-        if user and bcrypt.check_password_hash(user.password, form.password.data):
-            login_user(user, remember=form.rememberMe.data)
-            next_page = request.args.get('next')
-            return redirect(next_page) if next_page else redirect(url_for('home')) #ternary
-        else:
-            flash('login unsuccessful, please check email and password', 'danger')
-    return render_template('login.html', title='Login', form=form)
-
-@app.route("/logout")
-def logout():
-    logout_user()
-    return redirect(url_for('home'))
-
-
-@app.route("/account")
-@login_required
-def account():
-    form = UpdateAccountForm()
-    image_file = url_for('static', filename='profile_pics/' +current_user.image_file)
-    return render_template('account.html', title='account', image_file=image_file, form=form)

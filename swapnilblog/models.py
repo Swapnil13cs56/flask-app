@@ -1,5 +1,4 @@
 from datetime import datetime
-from flask_ckeditor import CKEditorField
 from swapnilblog import db
 
 
